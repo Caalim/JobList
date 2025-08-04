@@ -1,6 +1,6 @@
 
 
-const JobCard = ( {job} ) => {
+const JobCard = ( {job, setFilters} ) => {
     
   return (
     <>
@@ -41,17 +41,29 @@ const JobCard = ( {job} ) => {
                   <h2 className="flex gap-4">
 
                     {
-                    
                     job.languages.map((language, index) => (
-                    <h2 className="bg-[#eafafa] px-3 py-1 rounded-md text-[#589a9a] text-[12px] font-bold" key={index}>{language}
+                    <h2 className="bg-[#eafafa] px-3 py-1 rounded-md text-[#589a9a] text-[12px] font-bold cursor-pointer"
+                    key={index}
+                    onClick={() => setFilters( (prev) =>prev.includes(language)? prev : [...prev, language] )}
+                    >
+                      {language}
                     </h2>
-                    ))
-                    
-                    
+                    )) 
+                    }
+
+                    {
+                    job.tools.map((tools, index) => (
+                    <h2 className="bg-[#eafafa] px-3 py-1 rounded-md text-[#589a9a] text-[12px] font-bold cursor-pointer" 
+                    key={index}
+                    onClick={() => setFilters( (prev) =>prev.includes(tools)? prev : [...prev, tools] )}
+                    >
+                      {tools}
+                    </h2>
+                    )) 
                     }
                     
-                    
                     </h2>
+                    
                 </div>
             </div>
 
